@@ -45,7 +45,8 @@ EOL;
 	}
 
 	public function add() {
-		$this->Git->submoduleAdd($this->args[0], $this->args[1], $this->args[2]);
+		$branch = empty($this->args[2]) ? '' : $this->args[2];
+		$this->Git->submoduleAdd($this->args[0], $this->args[1], $branch);
 		$this->Git->run();
 	}
 
@@ -110,8 +111,8 @@ EOL;
 							'required' => true,
 						),
 						'BranchName' => array(
-							'help' => 'branch name to checkout. [master] is default. (e.g. 2.0)',
-							'required' => true,
+							'help' => 'branch name to checkout. empty is current branch. (e.g. 2.0)',
+							'required' => false,
 						),
 					),
 					'options' => array(

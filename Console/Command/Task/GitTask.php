@@ -16,11 +16,15 @@ class GitTask extends AppShell {
 		}
 	}
 
-	public function submoduleAdd($name, $repos, $branch = 'master') {
+	public function submoduleAdd($name, $repos, $branch = '') {
 		$repos = escapeshellarg($repos);
-		$branch = escapeshellarg($branch);
 		$plugindir = escapeshellarg($this->plugindir . DS . $name);
-		$this->_commands[] = $cmd = "git submodule add -b $branch $repos $plugindir";
+		if (!empty($branch)) {
+			$branch = escapeshellarg($branch);
+			$this->_commands[] = $cmd = "git submodule add -b $branch $repos $plugindir";
+		} else {
+			$this->_commands[] = $cmd = "git submodule add $repos $plugindir";
+		}
 		$this->out($cmd);
 	}
 }
