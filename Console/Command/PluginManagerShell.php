@@ -23,10 +23,7 @@ EOL;
 	}
 
 	public function run() {
-		if ($this->params['plugindir']) {
-			$this->Git->plugindir = $this->params['plugindir'];
-		}
-		$this->Git->dryrun = $this->params['dry-run'];
+		$this->_checkParams();
 		// run
 		$plugins = $this->_checkConfig();
 		$pwd = trim(shell_exec('pwd'));
@@ -48,7 +45,8 @@ EOL;
 	}
 
 	public function add() {
-		$this->Git->submoduleAdd($this->args[0], $this->args[1]);
+		$this->Git->submoduleAdd($this->args[0], $this->args[1], $this->args[2]);
+		$this->Git->run();
 	}
 
 	protected function _checkConfig() {
@@ -59,6 +57,13 @@ EOL;
 			return array();
 		}
 		return $plugins;
+	}
+
+	protected function _checkParams() {
+		if (!empty($this->params['plugindir'])) {
+			$this->Git->plugindir = $this->params['plugindir'];
+		}
+		$this->Git->dryrun = $this->params['dry-run'];
 	}
 
 	public function getOptionParser() {
@@ -74,6 +79,27 @@ EOL;
 				'help' => 'add plugins as git-submodule',
 				'parser' => array(
 					'description' => array('add plugins as git-submodule'),
+					'options' => array(
+						'force' => array(
+							'short' => 'f',
+							'help' => 'execute without confirm messages',
+							'boolean' => true,
+						),
+						'plugindir' => array(
+							'short' => 'p',
+							'help' => 'plugin directory. [Plugin] is default. (e.g. app/Plugin)',
+						),
+						'dry-run' => array(
+							'help' => 'show commands only',
+							'boolean' => true,
+						),
+					),
+				)
+			))->
+			addSubcommand('add', array(
+				'help' => 'add plugins as git-submodule',
+				'parser' => array(
+					'description' => array('add one plugin as git-submodule'),
 					'arguments' => array(
 						'PluginName' => array(
 							'help' => 'plugin name. (e.g. Users)',
@@ -85,7 +111,7 @@ EOL;
 						),
 						'BranchName' => array(
 							'help' => 'branch name to checkout. [origin] is default. (e.g. 2.0)',
-							'required' => false,
+							'required' => true,
 						),
 					),
 					'options' => array(
