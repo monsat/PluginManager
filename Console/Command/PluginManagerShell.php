@@ -110,7 +110,7 @@ EOL;
 							'required' => true,
 						),
 						'BranchName' => array(
-							'help' => 'branch name to checkout. [origin] is default. (e.g. 2.0)',
+							'help' => 'branch name to checkout. [master] is default. (e.g. 2.0)',
 							'required' => true,
 						),
 					),

@@ -16,7 +16,7 @@ class GitTask extends AppShell {
 		}
 	}
 
-	public function submoduleAdd($name, $repos, $branch = 'origin') {
+	public function submoduleAdd($name, $repos, $branch = 'master') {
 		$repos = escapeshellarg($repos);
 		$branch = escapeshellarg($branch);
 		$plugindir = escapeshellarg($this->plugindir . DS . $name);
