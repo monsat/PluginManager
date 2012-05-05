@@ -97,7 +97,7 @@ EOL;
 				)
 			))->
 			addSubcommand('add', array(
-				'help' => 'add plugins as git-submodule',
+				'help' => 'add one plugin as git-submodule',
 				'parser' => array(
 					'description' => array('add one plugin as git-submodule'),
 					'arguments' => array(
