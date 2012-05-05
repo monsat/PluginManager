@@ -41,3 +41,9 @@ run
 - -f , --force : execute without confirm messages
 - -p , --plugindir : plugin directory. [Plugin] is default. (e.g. app/Plugin)
 - --dry-run : show commands only
+
+## Git command sample
+
+```sh
+git submodule add -b 2.0 git://github.com/CakeDC/users.git Plugin/Users
+```
