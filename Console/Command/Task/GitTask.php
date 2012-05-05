@@ -9,7 +9,7 @@ class GitTask extends AppShell {
 	public function run() {
 		$message = 'OK ?';
 		if (!$this->dryrun && ($this->params['force'] || strtolower($this->in($message , array('y', 'n'), 'y')) === 'y')) {
-			foreach ($this->_comamnds as $cmd) {
+			foreach ($this->_commands as $cmd) {
 				$this->out(shell_exec($cmd));
 			}
 			$this->_commands = array();
