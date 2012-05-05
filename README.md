@@ -10,17 +10,17 @@ manage plugins in your app.
 
 CakePlugin::load('PluginManager');
 $plugins = array(
-  // folder name => git repository
+	// folder name => git repository
 	'Users' => array(
 		'origin' => 'git://github.com/CakeDC/users.git',
 		'branch' => '2.0',
 	),
 	'Search' => array(
-    'origin' => 'git://github.com/CakeDC/search.git',
-  ),
+		'origin' => 'git://github.com/CakeDC/search.git',
+	),
 	'Migrations' =>  => array(
-    'origin' => 'git://github.com/CakeDC/migrations.git',
-  ),
+		'origin' => 'git://github.com/CakeDC/migrations.git',
+	),
 );
 Configure::write('PluginManager.plugins', $plugins);
 ```
