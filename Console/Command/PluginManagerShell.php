@@ -33,7 +33,7 @@ EOL;
 		$fullPluginDir = $pwd . DS . $this->Git->plugindir;
 		$folder = new Folder($fullPluginDir);
 		foreach ($plugins as $name => $plugin) {
-			if (!$folder->cd($fullPluginDir . DS . $name)) {
+			if ($folder->cd($fullPluginDir . DS . $name)) {
 				$this->out($name . ' is exsist.');
 				continue;
 			}
